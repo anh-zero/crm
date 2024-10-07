@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="form.css" type="text/css">
+  <!-- Rich text editor cho form ghi chú-->
+  <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.6/quill.snow.css">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Thông tin khách hàng tiềm năng</title>
+</head>
+<body>
+  <header class="page-header">
+    <div class="header-content">
+      <h1><i class="fas fa-bars"></i> Thêm Khách hàng tiềm năng</h1>
+      <span class="unsaved-status">• Chưa Lưu</span>
+    </div>
+    <button class="save-button">Lưu</button>
+  </header>
+
+  <form>
+    <div class="form-group checkbox-group top-checkbox">
+      <input type="checkbox" id="is-organization" name="is-organization">
+      <label for="is-organization">Khách hàng tiềm năng là một tổ chức</label>
+    </div>
+<!--Form 1-->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="code">Mã Số</label>
+        <input type="text" id="code" name="code" value="CRM-LEAD-YYYY-"  >
+      </div>
+      <div class="form-group">
+        <label for="owner">Người sở hữu Tiềm năng</label>
+        <input type="email" id="owner" name="owner" value="nhom5-ttmt2@gmail.com"  >
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Tên người *</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="status">Trạng Thái *</label>
+        <select id="status" name="status" required>
+          <option value="potential">Khách hàng tiềm năng</option>
+          <option value="open">Đang mở</option>
+          <option value="responded">Đã phản hồi</option>
+          <option value="opportunity">Cơ hội</option>
+          <option value="báo-giá">Báo giá</option>
+          <option value="mất-báo-giá">Mất báo giá</option>
+          <option value="care" >Quan tâm</option>
+          <option value="converted">Chuyển đổi</option>
+          <option value="not-contacted">Không liên hệ</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="organization">Tên tổ chức</label>
+        <input type="text" id="organization" name="organization">
+      </div>
+      <div class="form-group">
+        <label for="salutation">Xưng Hô</label>
+        <input type="text" id="salutation" name="salutation">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Địa Chỉ Email</label>
+        <input type="email" id="email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="position">Chức Danh</label>
+        <input type="text" id="position" name="position">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <!-- Div trống -->
+      </div>
+      <div class="form-group">
+        <label for="gender">Giới Tính</label>
+        <input type="text" id="gender" name="gender">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <!-- Div trống -->
+      </div>
+      <div class="form-group">
+        <label for="source">Nguồn</label>
+        <input type="text" id="source" name="source">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <!-- Div trống -->
+      </div>
+      <div class="form-group">
+        <label for="campaign">Tên chiến dịch</label>
+        <input type="text" id="campaign" name="campaign">
+      </div>
+    </div>
+
+
+    <!-- Form 2 Theo sát -->
+    <div class="form-section">
+      <h2>Theo sát</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="follow-up-type">Liên hệ tiếp theo bằng</label>
+          <input type="text" id="follow-up-type" name="follow-up-type">
+        </div>
+        <div class="form-group">
+          <label for="follow-up-date">Ngày Liên hệ Tiếp theo</label>
+          <input type="date" id="follow-up-date" name="follow-up-date">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <!-- Div trống -->
+        </div>
+        <div class="form-group">
+          <label for="end-date">Kết thúc vào</label>
+          <input type="date" id="end-date" name="end-date">
+        </div>
+      </div>
+    </div>
+
+    <!-- Form 3 Ghi chú -->
+    <div class="collapsible-section">
+      <h2 class="section-title active">
+        Ghi Chú
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content">
+        <div id="editor">
+          <!-- Div chứa nội dung ghi chú đã chỉnh sửa bằng quill-->
+        </div>
+        <input type="hidden" name="notes" id="notes-input">
+      </div>
+    </div>
+
+    <!-- Form 4 Địa chỉ & Liên hệ -->
+    <div class="collapsible-section">
+      <h2 class="section-title active">
+        Địa chỉ & Liên hệ
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="address-type">Loại địa chỉ</label>
+            <select id="address-type" name="address-type">
+              <option value="thanh-toan">Thanh toán</option>
+              <option value="van-phong">Văn phòng</option>
+              <option value="van-chuyen">Vận chuyển</option>
+              <option value="ca-nhan">Cá nhân</option>
+              <option value="nha-may">Nhà máy</option>
+              <option value="buu-chinh">Bưu chính</option>
+              <option value="cua-hang">Cửa hàng</option>
+              <option value="cong-ty-con">Công ty con</option>
+              <option value="kho-hang">Kho hàng</option>
+              <option value="hien-tai">Hiện tại</option>
+              <option value="dai-han">Dài hạn</option>
+              <option value="khac">Khác</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="title">Tiêu đề</label>
+            <input type="text" id="title" name="title">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="address-name">Tên địa chỉ</label>
+            <input type="text" id="address-name" name="address-name">
+          </div>
+          <div class="form-group">
+            <label for="country">Quốc Gia</label>
+            <input type="text" id="country" name="country" value="Vietnam"  >
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="address-line1">Địa chỉ Line 1</label>
+            <input type="text" id="address-line1" name="address-line1" placeholder="Nhà riêng, Cơ quan, v.v.">
+          </div>
+          <div class="form-group">
+            <label for="postal-code">Mã bưu chính</label>
+            <input type="text" id="postal-code" name="postal-code">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="address-line2">Địa chỉ Dòng 2</label>
+            <input type="text" id="address-line2" name="address-line2">
+          </div>
+          <div class="form-group">
+            <!-- Div trống -->
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">Thành phố / thị xã</label>
+            <input type="text" id="city" name="city">
+          </div>
+          <div class="form-group">
+            <!-- Div trống -->
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="district">Quận</label>
+            <input type="text" id="district" name="district">
+          </div>
+          <div class="form-group">
+            <!-- Div trống -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form 5 Liên Lạc -->
+    <div class="collapsible-section">
+      <h2 class="section-title active">
+        Liên Lạc
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content">
+        <div class="form-group">
+          <label for="chuyen-tiep">Chuyển tiếp</label>
+          <input type="text" id="chuyen-tiep" name="chuyen-tiep">
+        </div>
+        <div class="form-group">
+          <label for="so-dien-thoai">Số Điện thoại di động.</label>
+          <input type="tel" id="so-dien-thoai" name="so-dien-thoai">
+        </div>
+        <div class="form-group">
+          <label for="fax">Fax</label>
+          <input type="text" id="fax" name="fax">
+        </div>
+        <div class="form-group">
+          <label for="website">Website</label>
+          <input type="url" id="website" name="website">
+        </div>
+      </div>
+    </div>
+
+    <!-- Form 6 Thêm thông tin -->
+    <div class="collapsible-section">
+      <h2 class="section-title active">
+        Thêm thông tin
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="loai-tiem-nang">Loại Tiềm năng</label>
+            <select id="loai-tiem-nang" name="loai-tiem-nang">
+              <option value="khach-hang">Khách hàng</option>             
+              <option value="doi-tac">Đối tác</option>
+              <option value="tu-nan">Tự nấn</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cong-ty">Công Ty</label>
+            <input type="text" id="cong-ty" name="cong-ty" value="Công Ty M-offer">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phan-khuc-thi-truong">Phân khúc thị trường</label>
+            <input type="text" id="phan-khuc-thi-truong" name="phan-khuc-thi-truong">
+          </div>
+          <div class="form-group">
+            <label for="quoc-gia">Quốc gia</label>
+            <input type="text" id="quoc-gia" name="quoc-gia" value="hà nội"  >
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nganh-cong-nghiep">Ngành công nghiệp</label>
+            <input type="text" id="nganh-cong-nghiep" name="nganh-cong-nghiep">
+          </div>
+          <div class="form-group">
+            <label for="ngon-ngu-in">Ngôn ngữ in</label>
+            <input type="text" id="ngon-ngu-in" name="ngon-ngu-in" value="vi" >
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="yeu-cau-loai">Yêu cầu Loại</label>
+            <select id="yeu-cau-loai" name="yeu-cau-loai">
+              <option value="">-- Chọn loại --</option>
+               <option value="dat-hang-sp">Đặt hàng sản phẩm</option>
+               <option value="yctt">Yêu cầu thông tin</option>
+               <option value="de-xuat">Đề xuất</option>
+               <option value="khac">Khác</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="huy-dang-ky" name="huy-dang-ky">
+              <label for="huy-dang-ky">Hủy Đăng Ký</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="nguoi-theo-doi-blog" name="nguoi-theo-doi-blog">
+              <label for="nguoi-theo-doi-blog">Người theo dõi blog</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </form>
+
+  <script>
+    var quill = new Quill('#editor', {
+      theme: 'snow',
+      modules: {
+        toolbar: [
+          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          ['link', 'image', 'video'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'align': [] }],
+          ['clean']
+        ]
+      }
+    });
+
+    // Khi form được gửi, cập nhật input ẩn với nội dung của editor
+    document.querySelector('form').onsubmit = function() {
+      document.getElementById('notes-input').value = quill.root.innerHTML;
+    };
+
+    // Cập nhật chức năng collapsible
+    document.querySelectorAll('.section-title').forEach(function(title) {
+      title.addEventListener('click', function() {
+        this.classList.toggle('active');
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    });
+
+    // Khởi tạo tất cả các phần tử section là mở
+    document.querySelectorAll('.section-content').forEach(function(content) {
+      content.style.maxHeight = content.scrollHeight + "px";
+    });
+  </script>
+</body>
+</html>
